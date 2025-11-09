@@ -1,4 +1,4 @@
-import { forwardRef, type ReactNode } from 'react';
+import React, { forwardRef, type ReactNode } from 'react';
 import './Button.css';
 
 export const Button = forwardRef<HTMLButtonElement, { children: ReactNode }>(
@@ -8,3 +8,5 @@ export const Button = forwardRef<HTMLButtonElement, { children: ReactNode }>(
     </button>
   ),
 );
+
+Button.displayName = 'Button';
