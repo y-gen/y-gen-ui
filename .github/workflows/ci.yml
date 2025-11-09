@@ -59,16 +59,34 @@ jobs:
     if: github.ref == 'refs/heads/main' || github.event_name == 'release'
     steps:
       - uses: actions/checkout@v4
+
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: 20
           registry-url: https://registry.npmjs.org/
+
       - name: Install dependencies
-        run: npm install
+        run: npm ci
+
       - name: Build package
         run: npm run build
+
+      - name: Check if version changed
+        id: version_check
+        run: |
+          PKG_NAME=$(node -p "require('./package.json').name")
+          PKG_VERSION=$(node -p "require('./package.json').version")
+          PUBLISHED_VERSION=$(npm view $PKG_NAME version || echo "0.0.0")
+          echo "local=$PKG_VERSION, published=$PUBLISHED_VERSION"
+          if [ "$PKG_VERSION" = "$PUBLISHED_VERSION" ]; then
+            echo "skip=true" >> $GITHUB_OUTPUT
+          else
+            echo "skip=false" >> $GITHUB_OUTPUT
+          fi
+
       - name: Publish package
+        if: steps.version_check.outputs.skip == 'false'
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
