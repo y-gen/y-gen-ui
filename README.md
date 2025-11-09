@@ -1,15 +1,15 @@
 # y-gen/ui
 
-To install dependencies:
+React UI library for Y-Gen Design System.
+
+- **GitHub:** [https://github.com/y-gen/y-gen-ui](https://github.com/y-gen/y-gen-ui)
+- **Figma Design:** [Y-Gen Design System](https://www.figma.com/design/tS2HHkv5psfU8kXcv6MBJO/Y-Gen-Design-System?node-id=1-2&p=f&t=V8ccKLlkMwjDSrRU-0)
+- **npm:** [@y-gen/ui](https://www.npmjs.com/package/@y-gen/ui)
+
+## Installation
+
+### Using npm
 
 ```bash
-bun install
+npm install @y-gen/ui
 ```
-
-To run:
-
-```bash
-bun run src/index.ts
-```
-
-This project was created using `bun init` in bun v1.2.22. [Bun](https://bun.com) is a fast all-in-one JavaScript runtime.
