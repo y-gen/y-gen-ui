@@ -1,23 +1,27 @@
-import type { ChangeEvent } from "react";
-import "./Input.css";
+import { forwardRef } from 'react';
+import './Input.css';
 
-type InputProps = {
-  value: string;
-  onChange: (value: string) => void;
+interface InputProps {
+  value?: string;
+  onValueChange?: (value: string) => void;
   placeholder?: string;
-};
+}
 
-export const Input = ({ value, onChange, placeholder }: InputProps) => {
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    onChange(e.target.value);
-  };
+export const Input = forwardRef<HTMLInputElement, InputProps>(
+  ({ value = '', onValueChange = () => {}, placeholder = '', ...props }, ref) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      onValueChange(e.target.value);
+    };
 
-  return (
-    <input
-      className="input"
-      value={value}
-      onChange={handleChange}
-      placeholder={placeholder}
-    />
-  );
-};
+    return (
+      <input
+        className="input"
+        ref={ref}
+        value={value}
+        onChange={handleChange}
+        placeholder={placeholder}
+        {...props}
+      />
+    );
+  },
+);

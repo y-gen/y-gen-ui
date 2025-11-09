@@ -1,17 +1,16 @@
 {
   "name": "@y-gen/ui",
-  "version": "0.0.8",
+  "version": "0.0.14",
   "type": "module",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
-    }
+    ".": "./dist/index.js"
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsup && postcss dist/**/*.css --replace"
   },
