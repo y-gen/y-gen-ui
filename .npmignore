@@ -1,0 +1,22 @@
+# исходники
+src/
+*.ts
+*.tsx
+!dist/
+
+# конфиги и мета
+tsconfig.json
+tsup.config.ts
+bun.lockb
+bunfig.toml
+*.log
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+
+# тесты
+__tests__/
+*.test.*
+*.spec.*
